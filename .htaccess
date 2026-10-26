@@ -1,7 +1,10 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
-    # Block access to hidden files and directories (.env, .git, etc.)
+    # Allow ACME Challenge for SSL verification
+    RewriteRule ^\.well-known/ - [L]
+
+    # Block access to all other hidden files and directories (.env, .git, etc.)
     RewriteRule ^\.(.*)$ - [F,L]
 
     # Block direct access to sensitive framework directories
